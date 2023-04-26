@@ -4,6 +4,12 @@ const connectDB = require('./db/connect');
 const express = require('express');
 const app = express();
 
+//Swagger
+const SwaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs')
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+
 //extra security packages
 const helmet = require('helmet');
 const cors = require('cors');
@@ -20,7 +26,7 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
-
+app.use('/', SwaggerUI.serve, SwaggerUI.setup(swaggerDocument))
 // extra packages
 app.set('trust proxy',1)
 app.use(rateLimiter({

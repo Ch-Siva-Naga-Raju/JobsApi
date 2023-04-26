@@ -1,0 +1,452 @@
+openapi: 3.0.0
+
+info:
+
+  title: Jobs Api
+
+  contact:
+
+    name: Siva Naga Raju
+
+    email: siva.naga.raju.sw@gmail.com
+
+  version: '1.0'
+
+servers:
+
+- url: https://node-jobs-backend-demo.onrender.com/api/v1
+
+  variables: {}
+
+paths:
+
+  /auth/register:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: Register
+
+      operationId: Register
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/RegisterDeployedRequest'
+
+              - example:
+
+                  name: Ramasubbiah
+
+                  email: ramasubbaiah4@gmail.com
+
+                  password: ramasubbaiah
+
+            example:
+
+              name: Ramasubbiah
+
+              email: ramasubbaiah4@gmail.com
+
+              password: ramasubbaiah
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /auth/login:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: Login
+
+      operationId: Login
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/LoginDeployedRequest'
+
+              - example:
+
+                  email: ramasubbiah3@gmail.com
+
+                  password: ramasubbiah
+
+            example:
+
+              email: ramasubbiah3@gmail.com
+
+              password: ramasubbiah
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /jobs/{id}:
+
+    delete:
+
+      tags:
+
+      - Jobs
+
+      summary: Delete Job
+
+      operationId: DeleteJob
+
+      parameters:
+
+      - name: id
+
+        in: path
+
+        description: ''
+
+        required: true
+
+        style: simple
+
+        schema:
+
+          type: string
+
+          example: 'null'
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    patch:
+
+      tags:
+
+      - Jobs
+
+      summary: Update Job
+
+      operationId: UpdateJob
+
+      parameters:
+
+      - name: id
+
+        in: path
+
+        description: ''
+
+        required: true
+
+        style: simple
+
+        schema:
+
+          type: string
+
+          example: 643fe982df0083086ca1eeaa
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/UpdateJobDeployedRequest'
+
+              - example:
+
+                  company: Twitter
+
+            example:
+
+              company: Twitter
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: Get Job
+
+      operationId: GetJob
+
+      parameters:
+
+      - name: id
+
+        in: path
+
+        description: ''
+
+        required: true
+
+        style: simple
+
+        schema:
+
+          type: string
+
+          example: 643fe982df0083086ca1eeaa
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs:
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: Get Jobs
+
+      operationId: GetJobs
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    post:
+
+      tags:
+
+      - Jobs
+
+      summary: Create Job
+
+      operationId: CreateJob
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+components:
+
+  schemas:
+
+    RegisterDeployedRequest:
+
+      title: RegisterDeployedRequest
+
+      required:
+
+      - name
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        name:
+
+          type: string
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        name: Ramasubbiah
+
+        email: ramasubbaiah4@gmail.com
+
+        password: ramasubbaiah
+
+    LoginDeployedRequest:
+
+      title: LoginDeployedRequest
+
+      required:
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        email: ramasubbiah3@gmail.com
+
+        password: ramasubbiah
+
+    UpdateJobDeployedRequest:
+
+      title: UpdateJobDeployedRequest
+
+      required:
+
+      - company
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+      example:
+
+        company: Twitter
+
+  securitySchemes:
+
+    bearer:
+
+      type: http
+
+      scheme: bearer
+
+security: []
+
+tags:
+
+- name: Misc
+
+  description: ''
+
+- name: Auth
+
+  description: ''
+
+- name: Jobs
+
+  description: ''
+
